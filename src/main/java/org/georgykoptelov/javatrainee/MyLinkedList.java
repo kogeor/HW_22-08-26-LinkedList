@@ -1,6 +1,6 @@
 package org.georgykoptelov.javatrainee;
 
-public class MyLinkedList {
+public class MyLinkedList<T> {
     private int sizeOfList;
     public int size()
     {
@@ -10,27 +10,27 @@ public class MyLinkedList {
     private Node firstElement;
     private Node lastElement;
 
-    public void add(String item) {
+    public void add(T item) {
         new Node(item, null, sizeOfList == 0 ? firstElement : lastElement);
     }
 
-    public void add(String item, int position) {
+    public void add(T item, int position) {
         if ((position <= sizeOfList) && (position >= 0)) {
             new Node(item, position == (sizeOfList) ? null : getNode(position), position == 0 ? null : getNode(position - 1));
         }
     }
 
-    public String getElement(int position) {
+    public T getElement(int position) {
         if ((position < sizeOfList) && (position >= 0))
             return getNode(position).element;
         else return null;
     }
 
-    public String getFirst() {
+    public T getFirst() {
         return firstElement.element;
     }
 
-    public String getLast() {
+    public T getLast() {
         return lastElement.element;
     }
 
@@ -45,14 +45,14 @@ public class MyLinkedList {
         return currentNode;
     }
 
-    public String deleteByIndex(int index) {
+    public T deleteByIndex(int index) {
         if ((index < sizeOfList) && (index >= 0)) {
             Node node = getNode(index);
             return del(node);
         } else return null;
     }
 
-    private String del(Node node) {
+    private T del(Node node) {
         if (node.prev != null)
             node.prev.next = node.next;
         else
@@ -65,7 +65,7 @@ public class MyLinkedList {
         return node.element;
     }
 
-    public String delete(String element) {
+    public T delete(String element) {
         Node node = firstElement;
         while (node != null) {
             if (node.element.equals(element)) {
@@ -102,10 +102,10 @@ public class MyLinkedList {
     private class Node {
         Node next;
 
-        String element;
+        T element;
         Node prev;
 
-        public Node(String element, Node next, Node prev) {
+        public Node(T element, Node next, Node prev) {
             this.element = element;
             this.next = next;
             this.prev = prev;

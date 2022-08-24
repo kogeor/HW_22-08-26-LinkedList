@@ -3,7 +3,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class LinkedListTest {
-    MyLinkedList testLinkedList = new MyLinkedList();
+    MyLinkedList<String> testLinkedList = new MyLinkedList<>();
 
     @Test
     public void testLinkedListCreating() {
