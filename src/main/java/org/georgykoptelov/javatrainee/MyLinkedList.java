@@ -5,27 +5,27 @@ public class MyLinkedList {
     private Node firstElement;
     private Node lastElement;
 
-    public void add(Object item) {
+    public void add(String item) {
         new Node(item, null, size == 0 ? firstElement : lastElement);
     }
 
-    public void add(Object item, int position) {
+    public void add(String item, int position) {
         if ((position <= size) && (position >= 0)) {
             new Node(item, position == (size) ? null : getNode(position), position == 0 ? null : getNode(position - 1));
         }
     }
 
-    public Object getElement(int position) {
+    public String getElement(int position) {
         if ((position < size) && (position >= 0))
             return getNode(position).element;
         else return null;
     }
 
-    public Object getFirst() {
+    public String getFirst() {
         return firstElement.element;
     }
 
-    public Object getLast() {
+    public String getLast() {
         return lastElement.element;
     }
 
@@ -40,7 +40,7 @@ public class MyLinkedList {
         return currentNode;
     }
 
-    public Object deleteByIndex(int index) {
+    public String deleteByIndex(int index) {
         if ((index < size) && (index >= 0)) {
             Node node = getNode(index);
             if (node.prev != null)
@@ -67,10 +67,10 @@ public class MyLinkedList {
     private class Node {
         Node next;
 
-        Object element;
+        String element;
         Node prev;
 
-        public Node(Object element, Node next, Node prev) {
+        public Node(String element, Node next, Node prev) {
             this.element = element;
             this.next = next;
             this.prev = prev;
