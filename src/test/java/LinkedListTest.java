@@ -28,6 +28,18 @@ public class LinkedListTest {
         Assertions.assertEquals(2, testLinkedList.size);
     }
     @Test
+    public void testElementAddingWithPosition() {
+        testLinkedList.add("test");
+        testLinkedList.add("test1");
+        testLinkedList.add("test2");
+        testLinkedList.add("test3",1);
+        Assertions.assertEquals("test3", testLinkedList.getElement(1));
+        testLinkedList.add("test4",0);
+        Assertions.assertEquals("test4", testLinkedList.getElement(0));
+        testLinkedList.add("test5",6);
+        Assertions.assertNull(testLinkedList.getElement(6));
+    }
+    @Test
     public void testGetFirstElement() {
         testLinkedList.add("test");
         Assertions.assertEquals("test", testLinkedList.getElement(0));
