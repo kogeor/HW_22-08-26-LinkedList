@@ -114,6 +114,7 @@ public class LinkedListTest {
         Assertions.assertEquals("test4", testLinkedList.getElement(1));
         Assertions.assertEquals("test5", testLinkedList.getLast());
         Assertions.assertEquals(--size, testLinkedList.size());
+        Assertions.assertNull(testLinkedList.deleteByIndex(10));
     }
 
     @Test
@@ -129,6 +130,7 @@ public class LinkedListTest {
         Assertions.assertEquals(--size, testLinkedList.size());
         Assertions.assertEquals("test4", testLinkedList.delete("test4"));
         Assertions.assertEquals(--size, testLinkedList.size());
+        Assertions.assertNull(testLinkedList.delete("test5"));
     }
 
     @Test
@@ -140,7 +142,26 @@ public class LinkedListTest {
         Assertions.assertEquals(-1, testLinkedList.indexOf("test5"));
     }
 
+    @Test
+    public void testContains() {
+        testLinkedList.add("test");
+        testLinkedList.add("test2");
+        testLinkedList.add("test3");
+        Assertions.assertTrue(testLinkedList.contains("test3"));
+        Assertions.assertFalse(testLinkedList.contains("test4"));
 
+    }
+
+    @Test
+    public void testClear() {
+        testLinkedList.add("test");
+        testLinkedList.add("test2");
+        testLinkedList.add("test3");
+        testLinkedList.clear();
+        Assertions.assertEquals(0, testLinkedList.size());
+        Assertions.assertNull(testLinkedList.getFirst());
+        Assertions.assertNull(testLinkedList.getLast());
+    }
 
 /*    @Test
     public void testSort() {

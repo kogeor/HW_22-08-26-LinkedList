@@ -27,11 +27,17 @@ public class MyLinkedList<T> {
     }
 
     public T getFirst() {
-        return firstElement.element;
+        if (firstElement.element != null)
+            return firstElement.element;
+        else
+            return null;
     }
 
     public T getLast() {
-        return lastElement.element;
+        if (lastElement.element != null)
+            return lastElement.element;
+        else
+            return null;
     }
 
     private Node getNode(int itemPosition) {
@@ -98,9 +104,26 @@ public class MyLinkedList<T> {
         return -1;
     }
 
+    public boolean contains(T element) {
+
+        Node node = firstElement;
+        while (node != null) {
+            if (node.element.equals(element)) {
+                return true;
+            }
+            node = node.next;
+        }
+        return false;
+    }
+
+    public void clear() {
+        while (firstElement != null) {
+            deleteByIndex(0);
+        }
+    }
+
     private class Node {
         Node next;
-
         T element;
         Node prev;
 
