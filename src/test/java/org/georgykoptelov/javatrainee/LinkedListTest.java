@@ -1,5 +1,4 @@
 package org.georgykoptelov.javatrainee;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -107,7 +106,17 @@ public class LinkedListTest {
     }
 
     @Test
-    public void testSort() {
+    public void testIndexOf() {
+        testLinkedList.add("test");
+        testLinkedList.add("test2");
+        testLinkedList.add("test3");
+        Assertions.assertEquals(1, testLinkedList.indexOf("test2"));
+        Assertions.assertEquals(-1, testLinkedList.indexOf("test5"));
 
     }
+
+/*    @Test
+    public void testSort() {
+
+    }*/
 }

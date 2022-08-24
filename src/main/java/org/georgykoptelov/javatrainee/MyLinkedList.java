@@ -80,6 +80,20 @@ public class MyLinkedList {
         System.out.println();
     }
 
+    public int indexOf(String element) {
+        int position=0;
+        Node node=firstElement;
+        while (node != null) {
+            if (node.element.equals(element)) {
+
+                return position;
+            }
+            position++;
+            node = node.next;
+        }
+        return -1;
+    }
+
     private class Node {
         Node next;
 
