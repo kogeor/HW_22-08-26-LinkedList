@@ -21,29 +21,33 @@ public class LinkedListTest {
         testLinkedList.add("test");
         Assertions.assertEquals(1, testLinkedList.size);
     }
+
     @Test
     public void testSecondElementAdding() {
         testLinkedList.add("test");
         testLinkedList.add("test2");
         Assertions.assertEquals(2, testLinkedList.size);
     }
+
     @Test
     public void testElementAddingWithPosition() {
         testLinkedList.add("test");
         testLinkedList.add("test1");
         testLinkedList.add("test2");
-        testLinkedList.add("test3",1);
+        testLinkedList.add("test3", 1);
         Assertions.assertEquals("test3", testLinkedList.getElement(1));
-        testLinkedList.add("test4",0);
+        testLinkedList.add("test4", 0);
         Assertions.assertEquals("test4", testLinkedList.getElement(0));
-        testLinkedList.add("test5",6);
+        testLinkedList.add("test5", 6);
         Assertions.assertNull(testLinkedList.getElement(6));
     }
+
     @Test
-    public void testGetFirstElement() {
+    public void testGetElement() {
         testLinkedList.add("test");
         Assertions.assertEquals("test", testLinkedList.getElement(0));
     }
+
     @Test
     public void testGetSecondElement() {
         testLinkedList.add("test");
@@ -51,5 +55,34 @@ public class LinkedListTest {
         Assertions.assertEquals("test2", testLinkedList.getElement(1));
     }
 
+    @Test
+    public void testGetFirstElement() {
+        testLinkedList.add("test");
+        testLinkedList.add("test2");
+        Assertions.assertEquals("test", testLinkedList.getFirst());
+    }
 
+    @Test
+    public void testGetLastElement() {
+        testLinkedList.add("test");
+        testLinkedList.add("test2");
+        testLinkedList.add("test3");
+        Assertions.assertEquals("test3", testLinkedList.getLast());
+    }
+
+    @Test
+    public void testDeleteByIndex() {
+        testLinkedList.add("test");
+        testLinkedList.add("test2");
+        testLinkedList.add("test3");
+        testLinkedList.add("test4");
+        testLinkedList.add("test5");
+        Assertions.assertEquals("test", testLinkedList.deleteByIndex(0));
+        Assertions.assertEquals("test2", testLinkedList.getFirst());
+        testLinkedList.deleteByIndex(1);
+        Assertions.assertEquals("test2", testLinkedList.getElement(0));
+        Assertions.assertEquals("test4", testLinkedList.getElement(1));
+        Assertions.assertEquals("test5", testLinkedList.getLast());
+
+    }
 }

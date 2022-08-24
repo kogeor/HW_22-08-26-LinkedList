@@ -10,15 +10,23 @@ public class MyLinkedList {
     }
 
     public void add(Object item, int position) {
-        if (position <= size) {
+        if ((position <= size) && (position >= 0)) {
             new Node(item, position == (size) ? null : getNode(position), position == 0 ? null : getNode(position - 1));
         }
     }
 
     public Object getElement(int position) {
-        if (position < size)
+        if ((position < size) && (position >= 0))
             return getNode(position).element;
         else return null;
+    }
+
+    public Object getFirst() {
+        return firstElement.element;
+    }
+
+    public Object getLast() {
+        return lastElement.element;
     }
 
     private Node getNode(int itemPosition) {
@@ -30,6 +38,21 @@ public class MyLinkedList {
             position++;
         }
         return currentNode;
+    }
+
+    public Object deleteByIndex(int index) {
+        if ((index < size) && (index >= 0)) {
+            Node node = getNode(index);
+            if (node.prev != null)
+                node.prev.next = node.next;
+            else
+                firstElement=node.next;
+            if (node.next != null)
+                node.next.prev = node.prev;
+            else
+                lastElement=node.prev;
+            return node.element;
+        } else return null;
     }
 
     public void showList() {
