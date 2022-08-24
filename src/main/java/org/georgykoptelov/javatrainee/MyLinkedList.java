@@ -27,14 +27,14 @@ public class MyLinkedList<T> {
     }
 
     public T getFirst() {
-        if (firstElement.element != null)
+        if (firstElement != null)
             return firstElement.element;
         else
             return null;
     }
 
     public T getLast() {
-        if (lastElement.element != null)
+        if (lastElement != null)
             return lastElement.element;
         else
             return null;
