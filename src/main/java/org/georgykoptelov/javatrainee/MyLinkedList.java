@@ -1,22 +1,27 @@
 package org.georgykoptelov.javatrainee;
 
 public class MyLinkedList {
-    public int size;
+    private int sizeOfList;
+    public int size()
+    {
+        return sizeOfList;
+    }
+
     private Node firstElement;
     private Node lastElement;
 
     public void add(String item) {
-        new Node(item, null, size == 0 ? firstElement : lastElement);
+        new Node(item, null, sizeOfList == 0 ? firstElement : lastElement);
     }
 
     public void add(String item, int position) {
-        if ((position <= size) && (position >= 0)) {
-            new Node(item, position == (size) ? null : getNode(position), position == 0 ? null : getNode(position - 1));
+        if ((position <= sizeOfList) && (position >= 0)) {
+            new Node(item, position == (sizeOfList) ? null : getNode(position), position == 0 ? null : getNode(position - 1));
         }
     }
 
     public String getElement(int position) {
-        if ((position < size) && (position >= 0))
+        if ((position < sizeOfList) && (position >= 0))
             return getNode(position).element;
         else return null;
     }
@@ -41,7 +46,7 @@ public class MyLinkedList {
     }
 
     public String deleteByIndex(int index) {
-        if ((index < size) && (index >= 0)) {
+        if ((index < sizeOfList) && (index >= 0)) {
             Node node = getNode(index);
             return del(node);
         } else return null;
@@ -56,7 +61,7 @@ public class MyLinkedList {
             node.next.prev = node.prev;
         else
             lastElement = node.prev;
-        size--;
+        sizeOfList--;
         return node.element;
     }
 
@@ -73,7 +78,7 @@ public class MyLinkedList {
 
     public void showList() {
         int item = 0;
-        while (item < size) {
+        while (item < sizeOfList) {
             System.out.println(getElement(item));
             item++;
         }
@@ -112,7 +117,7 @@ public class MyLinkedList {
                 next.prev = this;
             else
                 lastElement = this;
-            size++;
+            sizeOfList++;
 
         }
     }
