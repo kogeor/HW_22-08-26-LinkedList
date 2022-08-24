@@ -1,17 +1,31 @@
 package org.georgykoptelov.javatrainee;
 
 public class MyLinkedList {
-    public  int size;
-    private Object firstElement;
-    private Object lastElement;
+    public int size;
+    private Node firstElement;
+    private Node lastElement;
 
     public void add(Object item) {
-        new Node(item, null, firstElement);
+        new Node(item, null, size == 0 ? firstElement : lastElement);
 
     }
 
+    public Object getElement(int position) {
+        Node currentNode;
+        currentNode = firstElement;
+        while (size < position) {
+            currentNode = currentNode.next;
+        }
+        return currentNode.element;
+    }
+
     private class Node {
-        public Node(Object element, Object next, Object prev) {
+        Node next;
+
+        Object element;
+        Node prev;
+
+        public Node(Object element, Node next, Node prev) {
             this.element = element;
             this.next = next;
             this.prev = prev;
@@ -22,9 +36,5 @@ public class MyLinkedList {
             size++;
 
         }
-
-        Object element;
-        Object next;
-        Object prev;
     }
 }

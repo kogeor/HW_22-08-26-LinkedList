@@ -21,4 +21,15 @@ public class LinkedListTest {
         testLinkedList.add("test");
         Assertions.assertEquals(1, testLinkedList.size);
     }
+    @Test
+    public void testSecondElementAdding() {
+        testLinkedList.add("test");
+        testLinkedList.add("test2");
+        Assertions.assertEquals(2, testLinkedList.size);
+    }
+    @Test
+    public void testGetFirstElement() {
+        testLinkedList.add("test");
+        Assertions.assertEquals("test", testLinkedList.getElement(1));
+    }
 }
