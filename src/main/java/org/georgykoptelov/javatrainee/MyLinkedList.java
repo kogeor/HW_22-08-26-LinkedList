@@ -82,7 +82,6 @@ public class MyLinkedList<T> {
             System.out.println(getElement(item));
             item++;
         }
-        System.out.println();
     }
 
     public int indexOf(String element) {

@@ -1,6 +1,12 @@
 package org.georgykoptelov.javatrainee;
+
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class LinkedListTest {
     MyLinkedList<String> testLinkedList = new MyLinkedList<>();
@@ -54,6 +60,27 @@ public class LinkedListTest {
         testLinkedList.add("test");
         testLinkedList.add("test2");
         Assertions.assertEquals("test2", testLinkedList.getElement(1));
+    }
+
+    private final ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+    @BeforeEach
+    public void setUpStreams() {
+        System.setOut(new PrintStream(output));
+    }
+
+    @Test
+    void testShowList() {
+        testLinkedList.add("test1");
+        testLinkedList.add("test2");
+        testLinkedList.add("test3");
+        testLinkedList.showList();
+        Assertions.assertEquals("test1\r\ntest2\r\ntest3\r\n", output.toString());
+    }
+
+    @AfterEach
+    public void cleanUpStreams() {
+        System.setOut(null);
     }
 
     @Test
