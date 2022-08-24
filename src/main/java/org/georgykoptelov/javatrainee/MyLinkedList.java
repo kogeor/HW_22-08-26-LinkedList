@@ -10,11 +10,13 @@ public class MyLinkedList {
 
     }
 
-    public Object getElement(int position) {
+    public Object getElement(int itemPosition) {
         Node currentNode;
         currentNode = firstElement;
-        while (size < position) {
+        int position = 0;
+        while (position < itemPosition) {
             currentNode = currentNode.next;
+            position++;
         }
         return currentNode.element;
     }
@@ -29,9 +31,10 @@ public class MyLinkedList {
             this.element = element;
             this.next = next;
             this.prev = prev;
-            if (size == 0) {
+            if (size == 0)
                 firstElement = this;
-            }
+            else
+                prev.next = this;
             lastElement = this;
             size++;
 

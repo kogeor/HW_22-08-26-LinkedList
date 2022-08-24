@@ -30,6 +30,14 @@ public class LinkedListTest {
     @Test
     public void testGetFirstElement() {
         testLinkedList.add("test");
-        Assertions.assertEquals("test", testLinkedList.getElement(1));
+        Assertions.assertEquals("test", testLinkedList.getElement(0));
     }
+    @Test
+    public void testGetSecondElement() {
+        testLinkedList.add("test");
+        testLinkedList.add("test2");
+        Assertions.assertEquals("test2", testLinkedList.getElement(1));
+    }
+
+
 }
