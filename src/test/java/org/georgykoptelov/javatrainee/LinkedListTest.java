@@ -1,4 +1,5 @@
-import org.georgykoptelov.javatrainee.MyLinkedList;
+package org.georgykoptelov.javatrainee;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -103,5 +104,10 @@ public class LinkedListTest {
         Assertions.assertEquals(--size, testLinkedList.size);
         Assertions.assertEquals("test4", testLinkedList.delete("test4"));
         Assertions.assertEquals(--size, testLinkedList.size);
+    }
+
+    @Test
+    public void testSort() {
+
     }
 }
