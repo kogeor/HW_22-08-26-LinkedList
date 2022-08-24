@@ -36,6 +36,7 @@ public class LinkedListTest {
         testLinkedList.add("test2");
         testLinkedList.add("test3", 1);
         Assertions.assertEquals("test3", testLinkedList.getElement(1));
+        Assertions.assertEquals("test1", testLinkedList.getElement(2));
         testLinkedList.add("test4", 0);
         Assertions.assertEquals("test4", testLinkedList.getElement(0));
         testLinkedList.add("test5", 6);
@@ -77,12 +78,30 @@ public class LinkedListTest {
         testLinkedList.add("test3");
         testLinkedList.add("test4");
         testLinkedList.add("test5");
+        int size = testLinkedList.size;
         Assertions.assertEquals("test", testLinkedList.deleteByIndex(0));
+        Assertions.assertEquals(--size, testLinkedList.size);
         Assertions.assertEquals("test2", testLinkedList.getFirst());
         testLinkedList.deleteByIndex(1);
         Assertions.assertEquals("test2", testLinkedList.getElement(0));
         Assertions.assertEquals("test4", testLinkedList.getElement(1));
         Assertions.assertEquals("test5", testLinkedList.getLast());
+        Assertions.assertEquals(--size, testLinkedList.size);
+    }
 
+    @Test
+    public void testDeleteByObject() {
+        testLinkedList.add("test");
+        testLinkedList.add("test2");
+        testLinkedList.add("test3");
+        testLinkedList.add("test4");
+        int size = testLinkedList.size;
+        Assertions.assertEquals("test", testLinkedList.delete("test"));
+        Assertions.assertEquals(--size, testLinkedList.size);
+        testLinkedList.showList();
+        Assertions.assertEquals("test3", testLinkedList.delete("test3"));
+        Assertions.assertEquals(--size, testLinkedList.size);
+        Assertions.assertEquals("test4", testLinkedList.delete("test4"));
+        Assertions.assertEquals(--size, testLinkedList.size);
     }
 }

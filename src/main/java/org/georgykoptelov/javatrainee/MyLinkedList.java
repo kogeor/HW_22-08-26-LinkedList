@@ -43,16 +43,32 @@ public class MyLinkedList {
     public String deleteByIndex(int index) {
         if ((index < size) && (index >= 0)) {
             Node node = getNode(index);
-            if (node.prev != null)
-                node.prev.next = node.next;
-            else
-                firstElement=node.next;
-            if (node.next != null)
-                node.next.prev = node.prev;
-            else
-                lastElement=node.prev;
-            return node.element;
+            return del(node);
         } else return null;
+    }
+
+    private String del(Node node) {
+        if (node.prev != null)
+            node.prev.next = node.next;
+        else
+            firstElement = node.next;
+        if (node.next != null)
+            node.next.prev = node.prev;
+        else
+            lastElement = node.prev;
+        size--;
+        return node.element;
+    }
+
+    public String delete(String element) {
+        Node node = firstElement;
+        while (node != null) {
+            if (node.element.equals(element)) {
+                return del(node);
+            }
+            node = node.next;
+        }
+        return null;
     }
 
     public void showList() {
