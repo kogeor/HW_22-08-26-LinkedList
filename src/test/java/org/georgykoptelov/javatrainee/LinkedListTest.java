@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class LinkedListTest {
     MyLinkedList<String> testLinkedList = new MyLinkedList<>();
@@ -192,6 +193,20 @@ public class LinkedListTest {
         testLinkedList.sort();
         testLinkedList.showList();
         Assertions.assertEquals("test\r\ntest\r\ntest2\r\ntest2\r\ntest3\r\ntest3\r\n", output.toString());
+    }
 
+    @Test
+    public void testIntegerSort() {
+        int randomNum;
+        MyLinkedList<Integer> myList = new MyLinkedList<>();
+        int numberAmount = 200;
+        for (int i = 0; i <= numberAmount; i++) {
+            randomNum = ThreadLocalRandom.current().nextInt(0, 1000);
+            myList.add(randomNum);
+        }
+        myList.sort();
+        for (int i = 0; i < numberAmount; i++) {
+            Assertions.assertTrue(myList.getElement(i) <= myList.getElement(i + 1));
+        }
     }
 }
