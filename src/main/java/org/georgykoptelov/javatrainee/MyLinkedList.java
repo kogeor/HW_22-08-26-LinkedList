@@ -122,7 +122,13 @@ public class MyLinkedList<T> {
         }
     }
 
-    private class Node {
+    public void set(int position, T item) {
+        if ((position <= sizeOfList) && (position >= 0)) {
+            new Node(item, position == (sizeOfList) ? null : getNode(position+1), position == 0 ? null : getNode(position - 1));
+    }
+    }
+
+     class Node {
         Node next;
         T element;
         Node prev;

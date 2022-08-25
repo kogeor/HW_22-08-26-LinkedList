@@ -163,6 +163,21 @@ public class LinkedListTest {
         Assertions.assertNull(testLinkedList.getLast());
     }
 
+    @Test
+    public void set() {
+        testLinkedList.add("test");
+        testLinkedList.add("test2");
+        testLinkedList.add("test3");
+        testLinkedList.set(2, "replace");
+        Assertions.assertEquals("test", testLinkedList.getElement(0));
+        Assertions.assertEquals("test2", testLinkedList.getElement(1));
+        Assertions.assertEquals("replace", testLinkedList.getElement(2));
+        testLinkedList.set(1, "replace1");
+        Assertions.assertEquals("replace1", testLinkedList.getElement(1));
+        Assertions.assertEquals("replace", testLinkedList.getElement(2));
+        testLinkedList.set(0, "replace2");
+        Assertions.assertEquals("replace2", testLinkedList.getElement(0));
+    }
 /*    @Test
     public void testSort() {
 
