@@ -134,7 +134,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
         }
     }
 
-    public int indexOf(String element) {
+    public int indexOf(T element) {
         int position=0;
         Node node=firstElement;
         while (node != null) {
