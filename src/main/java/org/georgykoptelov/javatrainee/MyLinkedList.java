@@ -1,30 +1,65 @@
 package org.georgykoptelov.javatrainee;
+
+import java.util.Collection;
+
 public class MyLinkedList<T extends Comparable<? super T>> {
     private int sizeOfList;
+    private Node lastElement;
+    private Node firstElement;
 
     public int size() {
         return sizeOfList;
     }
 
-    private Node firstElement;
-    private Node lastElement;
-
-    public void add(T item) {
+    public boolean add(T item) {
         new Node(item, null, sizeOfList == 0 ? firstElement : lastElement);
         sizeOfList++;
+        return true;
     }
 
-    public void add(T item, int position) {
-        if ((position <= sizeOfList) && (position >= 0)) {
-            new Node(item, position == (sizeOfList) ? null : getNode(position), position == 0 ? null : getNode(position - 1));
+    public void add(int index, T element) {
+        if ((index <= sizeOfList) && (index >= 0)) {
+            new Node(element, index == (sizeOfList) ? null : getNode(index), index == 0 ? null : getNode(index - 1));
             sizeOfList++;
         }
     }
 
-    public T getElement(int position) {
-        if ((position < sizeOfList) && (position >= 0))
-            return getNode(position).element;
-        else return null;
+    public boolean addAll(int index, Collection<? extends T> collection) {
+        for (var element : collection
+        ) {
+            this.add(index, element);
+            index++;
+        }
+        return true;
+    }
+
+    public boolean addAll(Collection<? extends T> collection) {
+        for (var element : collection
+        ) {
+            this.add(element);
+        }
+        return true;
+    }
+
+    public void addFirst(T element) {
+        add(0, element);
+    }
+
+    public void addLast(T element) {
+        add(sizeOfList, element);
+    }
+
+    public void clear() {
+        while (firstElement != null) {
+            remove(0);
+        }
+    }
+
+    public T removeLast() {
+        return del(lastElement);
+    }
+    public T removeFirst() {
+        return del(firstElement);
     }
 
     public T getFirst() {
@@ -41,6 +76,12 @@ public class MyLinkedList<T extends Comparable<? super T>> {
             return null;
     }
 
+    public T getElement(int position) {
+        if ((position < sizeOfList) && (position >= 0))
+            return getNode(position).element;
+        else return null;
+    }
+
     private Node getNode(int itemPosition) {
         Node currentNode;
         currentNode = firstElement;
@@ -52,7 +93,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
         return currentNode;
     }
 
-    public T deleteByIndex(int index) {
+    public T remove(int index) {
         if ((index < sizeOfList) && (index >= 0)) {
             Node node = getNode(index);
             return del(node);
@@ -72,15 +113,16 @@ public class MyLinkedList<T extends Comparable<? super T>> {
         return node.element;
     }
 
-    public T delete(String element) {
+    public boolean delete(T element) {
         Node node = firstElement;
         while (node != null) {
             if (node.element.equals(element)) {
-                return del(node);
+                del(node);
+                return true;
             }
             node = node.next;
         }
-        return null;
+        return false;
     }
 
     public void showList() {
@@ -115,12 +157,6 @@ public class MyLinkedList<T extends Comparable<? super T>> {
             node = node.next;
         }
         return false;
-    }
-
-    public void clear() {
-        while (firstElement != null) {
-            deleteByIndex(0);
-        }
     }
 
     public void set(int position, T item) {
