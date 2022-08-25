@@ -19,3 +19,4 @@ Features (My feature branch):
 * size()
 * sort()
 * toArrayList()  
+* indexOf(element)
