@@ -1,9 +1,6 @@
 package org.georgykoptelov.javatrainee;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -43,25 +40,25 @@ public class LinkedListTest {
         testLinkedList.add("test1");
         testLinkedList.add("test2");
         testLinkedList.add(1, "test3");
-        Assertions.assertEquals("test3", testLinkedList.getElement(1));
-        Assertions.assertEquals("test1", testLinkedList.getElement(2));
+        Assertions.assertEquals("test3", testLinkedList.get(1));
+        Assertions.assertEquals("test1", testLinkedList.get(2));
         testLinkedList.add(0, "test4");
-        Assertions.assertEquals("test4", testLinkedList.getElement(0));
+        Assertions.assertEquals("test4", testLinkedList.get(0));
         testLinkedList.add(6, "test5");
-        Assertions.assertNull(testLinkedList.getElement(6));
+        Assertions.assertNull(testLinkedList.get(6));
     }
 
     @Test
     public void testGetElement() {
         testLinkedList.add("test");
-        Assertions.assertEquals("test", testLinkedList.getElement(0));
+        Assertions.assertEquals("test", testLinkedList.get(0));
     }
 
     @Test
     public void testGetSecondElement() {
         testLinkedList.add("test");
         testLinkedList.add("test2");
-        Assertions.assertEquals("test2", testLinkedList.getElement(1));
+        Assertions.assertEquals("test2", testLinkedList.get(1));
     }
 
     private final ByteArrayOutputStream output = new ByteArrayOutputStream();
@@ -112,8 +109,8 @@ public class LinkedListTest {
         Assertions.assertEquals(--size, testLinkedList.size());
         Assertions.assertEquals("test2", testLinkedList.getFirst());
         testLinkedList.remove(1);
-        Assertions.assertEquals("test2", testLinkedList.getElement(0));
-        Assertions.assertEquals("test4", testLinkedList.getElement(1));
+        Assertions.assertEquals("test2", testLinkedList.get(0));
+        Assertions.assertEquals("test4", testLinkedList.get(1));
         Assertions.assertEquals("test5", testLinkedList.getLast());
         Assertions.assertEquals(--size, testLinkedList.size());
         Assertions.assertNull(testLinkedList.remove(10));
@@ -173,14 +170,14 @@ public class LinkedListTest {
         testLinkedList.add("test3");
         testLinkedList.set(2, "replace");
         int size = testLinkedList.size();
-        Assertions.assertEquals("test", testLinkedList.getElement(0));
-        Assertions.assertEquals("test2", testLinkedList.getElement(1));
-        Assertions.assertEquals("replace", testLinkedList.getElement(2));
+        Assertions.assertEquals("test", testLinkedList.get(0));
+        Assertions.assertEquals("test2", testLinkedList.get(1));
+        Assertions.assertEquals("replace", testLinkedList.get(2));
         testLinkedList.set(1, "replace1");
-        Assertions.assertEquals("replace1", testLinkedList.getElement(1));
-        Assertions.assertEquals("replace", testLinkedList.getElement(2));
+        Assertions.assertEquals("replace1", testLinkedList.get(1));
+        Assertions.assertEquals("replace", testLinkedList.get(2));
         testLinkedList.set(0, "replace2");
-        Assertions.assertEquals("replace2", testLinkedList.getElement(0));
+        Assertions.assertEquals("replace2", testLinkedList.get(0));
         Assertions.assertEquals(size, testLinkedList.size());
     }
 
@@ -215,7 +212,7 @@ public class LinkedListTest {
         }
         myList.sort();
         for (int i = 0; i < numberAmount; i++) {
-            Assertions.assertTrue(myList.getElement(i) <= myList.getElement(i + 1));
+            Assertions.assertTrue(myList.get(i) <= myList.get(i + 1));
         }
     }
 
@@ -284,13 +281,13 @@ public class LinkedListTest {
     @Test
     public void testAddFirst() {
         testLinkedList.addFirst("test");
-        Assertions.assertEquals("test", testLinkedList.getElement(0));
+        Assertions.assertEquals("test", testLinkedList.get(0));
     }
 
     @Test
     public void testAddLast() {
         testLinkedList.addLast("test");
-        Assertions.assertEquals("test", testLinkedList.getElement(testLinkedList.size() - 1));
+        Assertions.assertEquals("test", testLinkedList.get(testLinkedList.size() - 1));
     }
 
     @Test
@@ -302,7 +299,7 @@ public class LinkedListTest {
         testLinkedList.add("test4");
         int size = testLinkedList.size();
         Assertions.assertEquals("test4", testLinkedList.removeLast());
-        Assertions.assertNull(testLinkedList.getElement(4));
+        Assertions.assertNull(testLinkedList.get(4));
         Assertions.assertEquals(size - 1, testLinkedList.size());
     }
     @Test
@@ -314,8 +311,25 @@ public class LinkedListTest {
         testLinkedList.add("test4");
         int size = testLinkedList.size();
         Assertions.assertEquals("test", testLinkedList.removeFirst());
-        Assertions.assertEquals("test1",testLinkedList.getElement(0));
+        Assertions.assertEquals("test1", testLinkedList.get(0));
         Assertions.assertEquals(size - 1, testLinkedList.size());
+    }
+
+    @Test
+    public void testToArrayList() {
+        testLinkedList.add("test");
+        testLinkedList.add("test1");
+        testLinkedList.add("test2");
+        testLinkedList.add("test3");
+        testLinkedList.add("test4");
+        ArrayList<String>  testArrayList = new ArrayList<>();
+        testArrayList.add("test");
+        testArrayList.add("test1");
+        testArrayList.add("test2");
+        testArrayList.add("test3");
+        testArrayList.add("test4");
+        Assertions.assertEquals(testArrayList,testLinkedList.toArrayList());
+
     }
 }
 

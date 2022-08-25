@@ -1,5 +1,6 @@
 package org.georgykoptelov.javatrainee;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class MyLinkedList<T extends Comparable<? super T>> {
@@ -76,7 +77,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
             return null;
     }
 
-    public T getElement(int position) {
+    public T get(int position) {
         if ((position < sizeOfList) && (position >= 0))
             return getNode(position).element;
         else return null;
@@ -128,7 +129,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
     public void showList() {
         int item = 0;
         while (item < sizeOfList) {
-            System.out.println(getElement(item));
+            System.out.println(get(item));
             item++;
         }
     }
@@ -158,6 +159,15 @@ public class MyLinkedList<T extends Comparable<? super T>> {
         }
         return false;
     }
+    public ArrayList<T> toArrayList(){
+        ArrayList<T> arrayList = new ArrayList<>();
+        Node node= firstElement;
+        while (node!=null) {
+            arrayList.add(node.element);
+            node=node.next;
+        }
+        return arrayList;
+    }
 
     public void set(int position, T item) {
         if ((position <= sizeOfList) && (position >= 0)) {
@@ -183,7 +193,7 @@ public class MyLinkedList<T extends Comparable<? super T>> {
         int store = firstPosition;
         pivotIndex = lastPosition;
         for (int i = firstPosition; i <= lastPosition - 1; i++) {
-            if ((myLinkedList.getElement(i)).compareTo(myLinkedList.getElement(pivotIndex)) <= 0) {
+            if ((myLinkedList.get(i)).compareTo(myLinkedList.get(pivotIndex)) <= 0) {
                 swap(myLinkedList, i, store);
                 store++;
             }
@@ -194,8 +204,8 @@ public class MyLinkedList<T extends Comparable<? super T>> {
     }
 
     private void swap(MyLinkedList<T> myLinkedList, int x, int y) {
-        T temp = myLinkedList.getElement(x);
-        myLinkedList.set(x, myLinkedList.getElement(y));
+        T temp = myLinkedList.get(x);
+        myLinkedList.set(x, myLinkedList.get(y));
         myLinkedList.set(y, temp);
     }
 
