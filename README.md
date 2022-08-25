@@ -7,5 +7,5 @@ Features under development (My feature branch):
 * getElement(index)
 * getFirst()
 * getLast()
-*set(index,element)
-*sort() (now only for definite type)
+* set(index,element)
+* sort()
