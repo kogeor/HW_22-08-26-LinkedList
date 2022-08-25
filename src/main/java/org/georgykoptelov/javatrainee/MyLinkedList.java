@@ -1,7 +1,5 @@
 package org.georgykoptelov.javatrainee;
-
-
-public class MyLinkedList<T> {
+public class MyLinkedList<T extends Comparable<? super T>> {
     private int sizeOfList;
 
     public int size() {
@@ -136,9 +134,7 @@ public class MyLinkedList<T> {
     }
 
     private void quickSort(MyLinkedList<T> myLinkedList, int firstPosition, int lastPosition) {
-        if (firstPosition >= lastPosition) {
-            return;
-        } else {
+        if (firstPosition < lastPosition) {
             int pivotIndex = partition(myLinkedList, firstPosition, lastPosition);
             quickSort(myLinkedList, firstPosition, pivotIndex - 1);
             quickSort(myLinkedList, pivotIndex + 1, lastPosition);
@@ -151,7 +147,7 @@ public class MyLinkedList<T> {
         int store = firstPosition;
         pivotIndex = lastPosition;
         for (int i = firstPosition; i <= lastPosition - 1; i++) {
-            if (((String) myLinkedList.getElement(i)).compareTo((String) myLinkedList.getElement(pivotIndex)) <= 0) {
+            if ((myLinkedList.getElement(i)).compareTo(myLinkedList.getElement(pivotIndex)) <= 0) {
                 swap(myLinkedList, i, store);
                 store++;
             }
@@ -171,7 +167,7 @@ public class MyLinkedList<T> {
         return (first + last) / 2;
     }
 
-    class Node implements Comparable<Node> {
+    class Node {
         Node next;
         T element;
         Node prev;
@@ -191,9 +187,5 @@ public class MyLinkedList<T> {
 
         }
 
-        @Override
-        public int compareTo(Node o) {
-            return ((String) this.element).compareTo((String) o.element);
-        }
     }
 }
